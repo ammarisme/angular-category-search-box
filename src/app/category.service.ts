@@ -25,7 +25,7 @@ export class CategoryService {
    var results : Category [] = [];
 
     for(var key in cats ){
-      if(cats[key].categoryName.indexOf(keyword)!=-1){
+      if(cats[key].categoryName.toLowerCase().indexOf(keyword.toLowerCase())!=-1){
         results.push(cats[key]);
       }
     }

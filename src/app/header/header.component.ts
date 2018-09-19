@@ -33,4 +33,16 @@ export class HeaderComponent implements OnInit {
     this.mainCategories = this.categoryService.getAllCategories();
   }
 
+  onKeyDown(event : KeyboardEvent){
+    if(event.key == "ArrowDown"){
+     this.mainCategories[0].selectionStatus = 1;
+    }else if(event.key =="Enter" && this.mainCategories[0].selectionStatus == 1){
+      this.categorySelected(this.mainCategories[0]);
+    }
+
+  }
+      toggleOtherCategories(){
+  
+      }
+
 }

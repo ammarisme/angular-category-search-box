@@ -2,11 +2,19 @@
   <div class="form-group col-md-12 input-wrapper">
     <app-selected-category [category]="category" *ngFor="let category of selectedCategories" ></app-selected-category>
     <!-- <div class="col-md-6 pull-right form-control " style="display:inline-block" > -->
-        <input class="pull-right col-md-8" [(ngModel)]="searchKeyword" type="text"  (input)="onSearchChange($event.target.value)" >
+        <input class="pull-right col-md-8" [(ngModel)]="searchKeyword" type="text"  #inputBox (keydown)="onKeyDown($event)" (input)="onSearchChange($event.target.value)" >
     <!-- </div> -->
   </div>
 </div>
 
   <div class="row">
     <app-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of mainCategories"  ></app-category>
+    <div class="category-image" (click) = "toggleOtherCategories()" >
+      <img src="/assets/arrow-down.jpg" class="pull-right" alt="">
+  </div>
+  </div>
+
+
+  <div class="row">
+    
   </div>
