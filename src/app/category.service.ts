@@ -27,7 +27,7 @@ export class CategoryService {
     ];
 
   public selectedCategories : Category[] = [];
-  constructor(private http : Http) { 
+  constructor() { 
   }
     getAllCategories(){
     return this.categories;
