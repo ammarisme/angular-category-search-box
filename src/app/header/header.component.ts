@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   selectedCategories : Category []= [];
   searchKeyword : string;
   showOtherCategories : boolean = false;
+  selectionIndex : number = -1; 
 
   @ViewChild("inputBox") _el: ElementRef;
 
@@ -42,9 +43,19 @@ export class HeaderComponent implements OnInit {
 
   onKeyDown(event : KeyboardEvent){
     if(event.key == "ArrowDown"){
-     this.mainCategories[0].selectionStatus = 1;
-    }else if(event.key =="Enter" && this.mainCategories[0].selectionStatus == 1){
-      this.categorySelected(this.mainCategories[0]);
+     this.selectionIndex++;
+     this.mainCategories[this.selectionIndex].selectionStatus = 1;
+    }else if(event.key =="Enter" && this.mainCategories[this.selectionIndex].selectionStatus == 1){
+      this.categorySelected(this.mainCategories[this.selectionIndex]);
+      this.selectionIndex = -1;
+    }else if(event.key =="ArrowRight" && this.selectionIndex < this.mainCategories.length-1){
+      this.mainCategories[this.selectionIndex].selectionStatus = 0;
+      this.selectionIndex++;
+      this.mainCategories[this.selectionIndex].selectionStatus = 1;
+    }else if(event.key =="ArrowLeft" && this.selectionIndex > 0){
+      this.mainCategories[this.selectionIndex].selectionStatus = 0;
+      this.selectionIndex--;
+      this.mainCategories[this.selectionIndex].selectionStatus = 1;
     }
 
   }
