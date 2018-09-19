@@ -1,0 +1,15 @@
+.input-wrapper{
+    margin-top : 100px;
+    border : 1px solid grey;
+    border-radius: 3px;
+    padding : 4px;
+}
+
+.input-wrapper input{
+    border : none;
+    
+}
+
+.input-wrapper input:focus{
+    outline: none;
+}
