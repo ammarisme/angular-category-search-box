@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { Category } from '../category/category.model';
 
@@ -13,6 +13,9 @@ export class HeaderComponent implements OnInit {
   selectedCategories : Category []= [];
   searchKeyword : string;
 
+
+  @ViewChild("inputBox") _el: ElementRef;
+
   constructor(private categoryService : CategoryService) { }
 
   ngOnInit() {
@@ -26,6 +29,7 @@ export class HeaderComponent implements OnInit {
 
   categorySelected(selectedCategory : Category){
     this.searchKeyword = "";
+    this.categoryService.selectCategory(selectedCategory);
     this.mainCategories = this.categoryService.getAllCategories();
   }
 

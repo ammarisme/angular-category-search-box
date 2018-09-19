@@ -19,7 +19,6 @@ export class CategoryComponent implements OnInit {
 
   selectCategory(){
     this.categorySelected.emit(this.category);
-    this.categoryService.selectCategory(this.category);
   }
 
 }
