@@ -2,7 +2,7 @@
   <div class="form-group col-md-6 input-wrapper">
     <app-selected-category [category]="category" *ngFor="let category of selectedCategories" ></app-selected-category>
     <!-- <div class="col-md-6 pull-right form-control " style="display:inline-block" > -->
-        <input class="pull-right col-md-9" [(ngModel)]="searchKeyword" type="text"  #inputBox (keydown)="onKeyDown($event)" (input)="onSearchChange($event.target.value)" >
+        <input class="pull-right col-md-9"  type="text"  [(ngModel)]="inputText"  (keydown)="onKeyDown($event)" (input)="onSearchChange($event)" >
     <!-- </div> -->
   </div>
 </div>

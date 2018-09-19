@@ -37,7 +37,13 @@ export class CategoryService {
   }
   
   searchCategories(keyword:string){
-   var cats : Category[] = this.getAllCategories();
+   var cats : Category[] ;
+   
+   if(this.selectedCategories.length > 0){
+     cats = this.selectedCategories[this.selectedCategories.length-1].subCategories;
+   }else{
+     cats = this.getAllCategories();
+   }
    var results : Category [] = [];
     this.categories = [];
     this.otherCategories = [];

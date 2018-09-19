@@ -12,9 +12,11 @@ export class HeaderComponent implements OnInit {
   mainCategories : Category[] = [];
   otherCategories : Category[] = [];
   selectedCategories : Category []= [];
-  searchKeyword : string;
+  searchKeyword : string = "";
   showOtherCategories : boolean = false;
   selectionIndex : number = -1; 
+  keywordLength : number = 0;
+  inputText = "";
 
   @ViewChild("inputBox") _el: ElementRef;
 
@@ -26,18 +28,50 @@ export class HeaderComponent implements OnInit {
     this.mainCategories = this.categoryService.categories;
   }
 
-  onSearchChange(searchKeyword){
-    console.log(searchKeyword);
-    this.categoryService.searchCategories(searchKeyword);
+  onSearchChange(event){
+    console.log(event);
+    if(event.inputType =="deleteContentBackward"){
+      this.searchKeyword = "";//this.searchKeyword.substr(0, this.searchKeyword.length-2);
+      event.target.value ="";
+    }else if(event.inputType=="insertText"){
+      this.searchKeyword = this.searchKeyword + event.data;//= event.value;
+      
+    event.target.value = this.mainCategories[0].categoryName;
+    this.setInputSelection(event.target, this.searchKeyword.length, 100);
+    }
+
+    this.categoryService.searchCategories(this.searchKeyword);
     this.otherCategories = this.categoryService.otherCategories;
-    this.mainCategories = this.categoryService.categories
+    this.mainCategories = this.categoryService.categories;
+
+    
+    // event.target.select(this.keywordLength , 100);
+
   }
+
+   setInputSelection(input, startPos, endPos) {
+    input.focus();
+    if (typeof input.selectionStart != "undefined") {
+        input.selectionStart = startPos;
+        input.selectionEnd = endPos;
+    } else if (document.selection && document.selection.createRange) {
+        // IE branch
+        input.select();
+        var range = document.selection.createRange();
+        range.collapse(true);
+        range.moveEnd("character", endPos);
+        range.moveStart("character", startPos);
+        range.select();
+    }
+}
+
 
   categorySelected(selectedCategory : Category){
     this.searchKeyword = "";
     this.categoryService.selectCategory(selectedCategory);
     this.mainCategories = this.categoryService.categories;
     this.otherCategories = [];
+    this.inputText = "";
 
   }
 
@@ -57,10 +91,6 @@ export class HeaderComponent implements OnInit {
       this.selectionIndex--;
       this.mainCategories[this.selectionIndex].selectionStatus = 1;
     }
-
   }
-      toggleOtherCategories(){
-  
-      }
 
 }
