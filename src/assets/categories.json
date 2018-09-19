@@ -1,17 +1,17 @@
 [
     { "categoryName" :"Men’s Clothing","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/men.bmp" , "selectionStatus" : 0 ,"subCategories" : [
-      { "categoryName" :"Fredd Marshal" ,"level" :2, "categoryId" :1 , "imageUrl" : "/assets/category_images/men/fredd.bmp" , "selectionStatus" : 0 , "subCategories" : null} ,
-      { "categoryName" :"Inflation" ,"level" :2, "categoryId" :1 , "imageUrl" : "/assets/category_images/men/inflation.bmp" , "selectionStatus" : 0 , "subCategories" : null} ,
-      { "categoryName" :"Nersy" ,"level" :2, "categoryId" :1 , "imageUrl" : "/assets/category_images/men/nersy.bmp" , "selectionStatus" : 0 , "subCategories" : null} ]},
-    { "categoryName" :"Women’s Clothing","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/women.bmp" , "selectionStatus" : 0 , "subCategories" : [
-      { "categoryName" :"Love & Lemonade","level" :2, "categoryId" : 1, "imageUrl" : "/assets/category_images/women/love.bmp" , "selectionStatus" : 0 , "subCategories" : null},
-      { "categoryName" :"Valdim","level" :2, "categoryId" : 1, "imageUrl" : "/assets/category_images/women/valdim.bmp" , "selectionStatus" : 0 , "subCategories" : null},
-      { "categoryName" :"Simplee","level" :2, "categoryId" : 1, "imageUrl" : "/assets/category_images/women/simplee.bmp" , "selectionStatus" : 0 , "subCategories" : null}
+      { "categoryName" :"Fredd Marshal" ,"level" :2, "categoryId" :2 , "imageUrl" : "/assets/category_images/men/fredd.bmp" , "selectionStatus" : 0 , "subCategories" : null} ,
+      { "categoryName" :"Inflation" ,"level" :2, "categoryId" :3 , "imageUrl" : "/assets/category_images/men/inflation.bmp" , "selectionStatus" : 0 , "subCategories" : null} ,
+      { "categoryName" :"Nersy" ,"level" :2, "categoryId" :4 , "imageUrl" : "/assets/category_images/men/nersy.bmp" , "selectionStatus" : 0 , "subCategories" : null} ]},
+    { "categoryName" :"Women’s Clothing","level" :1, "categoryId" : 5, "imageUrl" : "/assets/category_images/women.bmp" , "selectionStatus" : 0 , "subCategories" : [
+      { "categoryName" :"Love & Lemonade","level" :2, "categoryId" : 6, "imageUrl" : "/assets/category_images/women/love.bmp" , "selectionStatus" : 0 , "subCategories" : null},
+      { "categoryName" :"Valdim","level" :2, "categoryId" : 7, "imageUrl" : "/assets/category_images/women/valdim.bmp" , "selectionStatus" : 0 , "subCategories" : null},
+      { "categoryName" :"Simplee","level" :2, "categoryId" : 8, "imageUrl" : "/assets/category_images/women/simplee.bmp" , "selectionStatus" : 0 , "subCategories" : null}
     ]},
-    { "categoryName" :"Cellphones & Accessories","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/cellphones.bmp", "selectionStatus" : 0  , "subCategories" : null},
-    { "categoryName" :"Computer, Office, Security","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/computer.bmp" , "selectionStatus" : 0 , "subCategories" : null},
-    { "categoryName" :"Jewelry & Watches","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/jewellery.bmp" , "selectionStatus" : 0 , "subCategories" : null},
-    { "categoryName" :"Bags & Shoes","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/bags.bmp" , "selectionStatus" : 0 , "subCategories" : null},
-    { "categoryName" :"Toys, Kids & Baby","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/toys.bmp" , "selectionStatus" : 0 , "subCategories" : null},
-    { "categoryName" :"Sport & Outdoors","level" :1, "categoryId" : 1, "imageUrl" : "/assets/category_images/sports.bmp" , "selectionStatus" : 0 , "subCategories" : null}
+    { "categoryName" :"Cellphones & Accessories","level" :1, "categoryId" : 9, "imageUrl" : "/assets/category_images/cellphones.bmp", "selectionStatus" : 0  , "subCategories" : null},
+    { "categoryName" :"Computer, Office, Security","level" :1, "categoryId" : 10, "imageUrl" : "/assets/category_images/computer.bmp" , "selectionStatus" : 0 , "subCategories" : null},
+    { "categoryName" :"Jewelry & Watches","level" :0, "categoryId" : 11, "imageUrl" : "/assets/category_images/jewellery.bmp" , "selectionStatus" : 0 , "subCategories" : null},
+    { "categoryName" :"Bags & Shoes","level" :0, "categoryId" : 12, "imageUrl" : "/assets/category_images/bags.bmp" , "selectionStatus" : 0 , "subCategories" : null},
+    { "categoryName" :"Toys, Kids & Baby","level" :0, "categoryId" : 13, "imageUrl" : "/assets/category_images/toys.bmp" , "selectionStatus" : 0 , "subCategories" : null},
+    { "categoryName" :"Sport & Outdoors","level" :0, "categoryId" : 14, "imageUrl" : "/assets/category_images/sports.bmp" , "selectionStatus" : 0 , "subCategories" : null}
   ]

@@ -7,30 +7,50 @@ import * as categoriesS from '../assets/categories.json';
 })
 export class CategoryService {
 
-  categories : Category[] = categoriesS.default;
-
+  categories : Category[] = [];
+  otherCategories : Category[] = [];
+  
   public selectedCategories : Category[] = [];
   constructor() { 
+    var cats : Category[] = this.getAllCategories();
+
+    for(var key in cats ){
+      if(cats[key].level == 1 || cats[key].level == 2){
+        this.categories.push(cats[key]);
+      }else{
+        this.otherCategories.push(cats[key]);
+      }
+    }
   }
+
+
     getAllCategories(){
+    return categoriesS.default;
+  }
+
+  getTopCategories(){
     return this.categories;
   }
 
-  getMainCategories(){}
-
-  getSubCategories(){}
+  getSubCategories(){
+    return this.otherCategories;
+  }
   
   searchCategories(keyword:string){
    var cats : Category[] = this.getAllCategories();
    var results : Category [] = [];
-
+    this.categories = [];
+    this.otherCategories = [];
     for(var key in cats ){
       if(cats[key].categoryName.toLowerCase().indexOf(keyword.toLowerCase())!=-1){
-        results.push(cats[key]);
+        if(cats[key].level==1 || cats[key].level==2)
+        {
+          this.categories.push(cats[key]);
+        }else{
+          this.otherCategories.push(cats[key]);
+        }
       }
     }
-
-    console.log(results);
     return results;
   }
 

@@ -10,9 +10,10 @@ import { Category } from '../category/category.model';
 export class HeaderComponent implements OnInit {
 
   mainCategories : Category[] = [];
+  otherCategories : Category[] = [];
   selectedCategories : Category []= [];
   searchKeyword : string;
-
+  showOtherCategories : boolean = false;
 
   @ViewChild("inputBox") _el: ElementRef;
 
@@ -20,17 +21,23 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.selectedCategories = this.categoryService.selectedCategories;
+    this.otherCategories = this.categoryService.otherCategories;
+    this.mainCategories = this.categoryService.categories;
   }
 
   onSearchChange(searchKeyword){
     console.log(searchKeyword);
-    this.mainCategories = this.categoryService.searchCategories(searchKeyword);
+    this.categoryService.searchCategories(searchKeyword);
+    this.otherCategories = this.categoryService.otherCategories;
+    this.mainCategories = this.categoryService.categories
   }
 
   categorySelected(selectedCategory : Category){
     this.searchKeyword = "";
     this.categoryService.selectCategory(selectedCategory);
-    this.mainCategories = this.categoryService.getAllCategories();
+    this.mainCategories = this.categoryService.categories;
+    this.otherCategories = [];
+
   }
 
   onKeyDown(event : KeyboardEvent){

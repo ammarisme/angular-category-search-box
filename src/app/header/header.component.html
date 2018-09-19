@@ -9,12 +9,14 @@
 
   <div class="row">
     <app-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of mainCategories"  ></app-category>
-    <div class="category-image" (click) = "toggleOtherCategories()" >
+    <div class="category-image" (click) = "showOtherCategories=!showOtherCategories" *ngIf="otherCategories.length > 0" >
       <img src="/assets/arrow-down.jpg" class="pull-right" alt="">
   </div>
   </div>
 
 
-  <div class="row">
-    
+  <div class="row" *ngIf="showOtherCategories" >
+    <ul>
+      <app-other-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of otherCategories"  ></app-other-category>
+    </ul>
   </div>

@@ -8,12 +8,14 @@ import { SelectedCategoryComponent } from './selected-category/selected-category
 import { CategoryService } from './category.service';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import { OtherCategoryComponent } from './other-category/other-category.component';
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     HeaderComponent,
-    SelectedCategoryComponent
+    SelectedCategoryComponent,
+    OtherCategoryComponent
   ],
   imports: [
     BrowserModule,
