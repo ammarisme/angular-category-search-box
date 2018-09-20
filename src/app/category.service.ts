@@ -11,6 +11,7 @@ export class CategoryService {
   otherCategories : Category[] = [];
   
   public selectedCategories : Category[] = [];
+  public predictedCategory : Category ;
   constructor() { 
     var cats : Category[] = this.getAllCategories();
 
@@ -47,17 +48,41 @@ export class CategoryService {
    var results : Category [] = [];
     this.categories = [];
     this.otherCategories = [];
+    
     for(var key in cats ){
       if(cats[key].categoryName.toLowerCase().indexOf(keyword.toLowerCase())!=-1){
         if(cats[key].level==1 || cats[key].level==2)
         {
+          cats[key].priority = cats[key].categoryName.toLowerCase().indexOf(keyword.toLowerCase());
           this.categories.push(cats[key]);
         }else{
+          cats[key].priority = cats[key].categoryName.toLowerCase().indexOf(keyword.toLowerCase());
           this.otherCategories.push(cats[key]);
         }
       }
     }
+
+    this.categories = this.categories.length > 1 ? this.categories.sort(this.compare) : this.categories;
+    this.otherCategories = this.otherCategories.length > 1 ?  this.otherCategories.sort(this.compare) : this.otherCategories;
+
+    if(this.categories.length > 0 && this.otherCategories.length > 0){
+      this.predictedCategory  = this.categories[0].priority > this.otherCategories[0].priority ? 
+      this.otherCategories[0] :
+      this.categories[0];
+    }else if(this.categories.length > 0 && this.otherCategories.length ==0){
+        this.predictedCategory = this.categories[0];
+    }else if(this.otherCategories.length > 0 && this.categories.length ==0){
+        this.predictedCategory = this.otherCategories[0];
+    }
     return results;
+  }
+
+  compare(a,b) {
+    if (a.priority < b.priority)
+       return -1;
+    if (a.priority > b.priority)
+      return 1;
+    return 0;
   }
 
   selectCategory(category : Category){

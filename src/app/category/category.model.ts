@@ -5,6 +5,7 @@ export class Category{
         public imageUrl : string,
         public selectionStatus : number,
         public subCategories : Category[] ){}
+        public priority : number;
     // categoryName : string;
     // categoryId : string;
     // subCategories : Category [];

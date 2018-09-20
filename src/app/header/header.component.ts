@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
   selectionIndex : number = -1; 
   keywordLength : number = 0;
   inputText = "";
+  menuCollapsed = true;
+
 
   @ViewChild("inputBox") _el: ElementRef;
 
@@ -30,19 +32,27 @@ export class HeaderComponent implements OnInit {
 
   onSearchChange(event){
     console.log(event);
+
+    
+    
     if(event.inputType =="deleteContentBackward"){
       this.searchKeyword = "";//this.searchKeyword.substr(0, this.searchKeyword.length-2);
       event.target.value ="";
+      this.categoryService.searchCategories(this.searchKeyword);
+    this.otherCategories = this.categoryService.otherCategories;
+    this.mainCategories = this.categoryService.categories;
+    
     }else if(event.inputType=="insertText"){
       this.searchKeyword = this.searchKeyword + event.data;//= event.value;
-      
-    event.target.value = this.mainCategories[0].categoryName;
+    
+      this.categoryService.searchCategories(this.searchKeyword);
+    this.otherCategories = this.categoryService.otherCategories;
+    this.mainCategories = this.categoryService.categories;
+    
+    event.target.value = this.categoryService.predictedCategory.categoryName;
     this.setInputSelection(event.target, this.searchKeyword.length, 100);
     }
 
-    this.categoryService.searchCategories(this.searchKeyword);
-    this.otherCategories = this.categoryService.otherCategories;
-    this.mainCategories = this.categoryService.categories;
 
     
     // event.target.select(this.keywordLength , 100);
@@ -54,10 +64,10 @@ export class HeaderComponent implements OnInit {
     if (typeof input.selectionStart != "undefined") {
         input.selectionStart = startPos;
         input.selectionEnd = endPos;
-    } else if (document.selection && document.selection.createRange) {
+    } else if ((document as any).selection && (document as any).selection.createRange) {
         // IE branch
         input.select();
-        var range = document.selection.createRange();
+        var range = (document as any).selection.createRange();
         range.collapse(true);
         range.moveEnd("character", endPos);
         range.moveStart("character", startPos);
