@@ -2,7 +2,9 @@
 This is a simple search box to search through categories of products structured as a tree model.
 Demo -: http://category-search.surge.sh
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+This project is a simple category search box whereas categories are organized in a tree data structure. project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+
+Demo :- http://category-search.surge.sh/
 
 ## Development server
 
