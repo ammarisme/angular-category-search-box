@@ -7,9 +7,9 @@
 
   <div class="row" *ngIf="mainCategories.length > 0 || otherCategories.length > 0">
     <app-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of mainCategories"  ></app-category>
-    <div class="category-image"  (click) = "toggleOtherCategoriesMenu()"  >
-      <img [src]="(this.otherCategories.length == 0)?'/assets/arrow-down.jpg':'/assets/arrow-up.jpg'" class="pull-right" alt="">
-      <ul class="other-category-list"  >
+    <div class="category-image"  (click) = "toggleOtherCategoriesMenu()"   *ngIf="showOtherCategories" >
+      <img [src]="menuOpen?'/assets/arrow-up.jpg':'/assets/arrow-down.jpg'" class="pull-right" alt="">
+      <ul class="other-category-list" *ngIf="menuOpen" >
         <app-other-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of otherCategories"  ></app-other-category>
       </ul>
   </div>

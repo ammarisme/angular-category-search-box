@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   selectionIndex : number = -1;
   keywordLength : number = 0;
   inputText = "";
-  menuCollapsed = true;
+  menuOpen = true;
   showMainCategories :boolean = false;
 
   @ViewChild("inputBox") _el: ElementRef;
@@ -33,17 +33,13 @@ export class HeaderComponent implements OnInit {
     this.otherCategories = this.categoryService.otherCategories;
     this.mainCategories = this.categoryService.categories;
     this.showMainCategories=true;
-    this.showOtherCategories = false;
+    this.showOtherCategories = true;
+    this.menuOpen = false;
   }
 
   toggleOtherCategoriesMenu(){
-    this.showOtherCategories=!this.showOtherCategories;
-    this.menuCollapsed=!this.menuCollapsed;
-    if(!this.menuCollapsed){
-      this.otherCategories = this.categoryService.otherCategories;
-    }else{
-      this.otherCategories = [];
-    }
+    // this.showOtherCategories=!this.showOtherCategories;
+    this.menuOpen=!this.menuOpen;
   }
 
   onSearchChange(event){
@@ -58,7 +54,7 @@ export class HeaderComponent implements OnInit {
       }else{
         event.target.value = "";
       }
-
+      
       this.setInputSelection(event.target, this.searchKeyword.length, 100);
     }else if(event.inputType=="insertText"){
       this.searchKeyword = this.searchKeyword + event.data;//= event.value;
@@ -73,6 +69,7 @@ export class HeaderComponent implements OnInit {
 
     this.mainCategories = this.categoryService.categories;
     this.otherCategories = this.categoryService.otherCategories;
+    this.menuOpen = this.otherCategories.length>0;
   }
 
    setInputSelection(input, startPos, endPos) {
