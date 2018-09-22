@@ -26,15 +26,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
      this.selectedCategories = this.categoryService.selectedCategories;
-    // this.otherCategories = this.categoryService.otherCategories;
-    // this.mainCategories = this.categoryService.categories;
   }
 
   onInputFocus(){
+    this.categoryService.searchCategories(this.searchKeyword);
+    this.otherCategories = this.categoryService.otherCategories;
     this.mainCategories = this.categoryService.categories;
     this.showMainCategories=true;
-
+    this.showOtherCategories = false;
   }
+
   toggleOtherCategoriesMenu(){
     this.showOtherCategories=!this.showOtherCategories;
     this.menuCollapsed=!this.menuCollapsed;
@@ -69,6 +70,9 @@ export class HeaderComponent implements OnInit {
       }
       this.setInputSelection(event.target, this.searchKeyword.length, 100);
     }
+
+    this.mainCategories = this.categoryService.categories;
+    this.otherCategories = this.categoryService.otherCategories;
   }
 
    setInputSelection(input, startPos, endPos) {
@@ -86,13 +90,9 @@ export class HeaderComponent implements OnInit {
     }
 }
 
-
   categorySelected(selectedCategory : Category){
-
     this.searchKeyword = "";
     this.categoryService.selectCategory(selectedCategory);
-    this.mainCategories = this.categoryService.categories;
-    this.otherCategories = this.categoryService.otherCategories;
     this.inputText = "";
   }
 
@@ -109,6 +109,7 @@ export class HeaderComponent implements OnInit {
         this.categorySelected(this.categoryService.predictedCategory);
         this.selectionIndex= -1;
       }
+        this.onInputFocus();
     }
     else if(event.key =="ArrowRight" && this.selectionIndex < this.mainCategories.length-1){
       this.mainCategories[this.selectionIndex].selectionStatus = 0;
@@ -121,20 +122,12 @@ export class HeaderComponent implements OnInit {
     }else if(event.key =="Enter" && this.searchKeyword.length > 0){
 
     }else if (event.key == "Backspace"){
-      // if(this.inputText =""){
-
-        if(this.inputText==""){
-          this.categoryService.deselectCategory();
-          this.categoryService.searchCategories(this.searchKeyword);
-          this.onInputFocus();
-          return;
-        }
-        
-      // this.searchKeyword = "";
-      
-      // this.otherCategories = this.categoryService.otherCategories;
-      // this.mainCategories = this.categoryService.categories;
-      // }
+      if(this.inputText==""){
+        this.categoryService.deselectCategory();
+        this.categoryService.searchCategories(this.searchKeyword);
+        this.onInputFocus();
+        return;
+      }
     }
   }
 }

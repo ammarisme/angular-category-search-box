@@ -1,21 +1,16 @@
 <div class="row">
   <div class="form-group col-md-6 input-wrapper">
     <app-selected-category [category]="category" *ngFor="let category of selectedCategories" ></app-selected-category>
-    <!-- <div class="col-md-6 pull-right form-control " style="display:inline-block" > -->
         <input class="pull-right col-md-9" (focus)="onInputFocus()"  type="text"  [(ngModel)]="inputText"  (keydown)="onKeyDown($event)" (input)="onSearchChange($event)" >
-    <!-- </div> -->
   </div>
 </div>
 
   <div class="row" *ngIf="mainCategories.length > 0 || otherCategories.length > 0">
     <app-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of mainCategories"  ></app-category>
-    <div class="category-image"  (click) = "toggleOtherCategoriesMenu()" >
+    <div class="category-image"  (click) = "toggleOtherCategoriesMenu()"  >
       <img [src]="(this.otherCategories.length == 0)?'/assets/arrow-down.jpg':'/assets/arrow-up.jpg'" class="pull-right" alt="">
+      <ul class="other-category-list"  >
+        <app-other-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of otherCategories"  ></app-other-category>
+      </ul>
   </div>
-  </div>
-
-  <div class="row" *ngIf="otherCategories.length > 0" >
-    <ul>
-      <app-other-category [category]="category" (categorySelected)="categorySelected($event)" *ngFor="let category of otherCategories"  ></app-other-category>
-    </ul>
   </div>

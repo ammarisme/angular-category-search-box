@@ -1,6 +1,6 @@
 <li class="row">
 
-  <div class="category-image" (click) = "selectCategory()" >
+  <div [class]="category.selectionStatus==0?'category-image':'category-image-selected'" (click) = "selectCategory()" >
     <img [src]="category.imageUrl" class="pull-right" alt="">
   </div>
 </li>

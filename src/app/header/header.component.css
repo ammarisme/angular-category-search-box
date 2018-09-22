@@ -13,3 +13,9 @@
 .input-wrapper input:focus{
     outline: none;
 }
+
+
+.other-category-list{
+    padding: 20px !important;
+    padding-top: 10px !important;
+}    

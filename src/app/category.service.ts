@@ -13,7 +13,7 @@ export class CategoryService {
   public selectedCategories : Category[] = [];
   public predictedCategory : Category ;
   constructor() { 
-    this.resetAllCategories();
+    // this.resetAllCategories();
   }
 
 
@@ -23,7 +23,8 @@ export class CategoryService {
 
   resetAllCategories(){
     var cats : Category[] = this.getAllCategories();
-
+    this.categories = [];
+    this.otherCategories = [];
     for(var key in cats ){
       if(cats[key].level == 1 || cats[key].level == 2){
         this.categories.push(cats[key]);
@@ -31,7 +32,6 @@ export class CategoryService {
         this.otherCategories.push(cats[key]);
       }
     }
-
   }
   getTopCategories(){
   }
@@ -67,17 +67,17 @@ export class CategoryService {
       }
     }
 
-    this.categories = this.categories.length > 1 ? this.categories.sort(this.compare) : this.categories;
-    this.otherCategories = this.otherCategories.length > 1 ?  this.otherCategories.sort(this.compare) : this.otherCategories;
+    this.categories = this.categories.length > 0 ? this.categories.sort(this.compare) : this.categories;
+    this.otherCategories = this.otherCategories.length > 0 ?  this.otherCategories.sort(this.compare) : this.otherCategories;
 
     if(this.categories.length > 0 && this.otherCategories.length > 0){
       this.predictedCategory  = this.categories[0].priority > this.otherCategories[0].priority ? 
       this.otherCategories[0] :
       this.categories[0];
     }else if(this.categories.length > 0 && this.otherCategories.length ==0){
-        this.predictedCategory = this.categories[0];
+      this.predictedCategory = this.categories[0];
     }else if(this.otherCategories.length > 0 && this.categories.length ==0){
-        this.predictedCategory = this.otherCategories[0];
+      this.predictedCategory = this.otherCategories[0];
     }else{
       this.predictedCategory = null;
     }
@@ -93,18 +93,16 @@ export class CategoryService {
 
   selectCategory(category : Category){
     this.selectedCategories.push(category);
-    this.categories = category.subCategories!=null ? category.subCategories : [];
+    this.categories = category.subCategories!=null ? category.subCategories : [];  
+    this.otherCategories = [];
   }
   deselectCategory(){
-    console.log("deselecting..");
     this.selectedCategories.pop();
   
-    console.log(this.selectedCategories[this.selectedCategories.length-1]);
     if(this.selectedCategories.length > 0){
       this.categories = this.selectedCategories[this.selectedCategories.length-1].subCategories;
     }else{
       this.resetAllCategories();
-    }
-    
+    }  
   }
 }

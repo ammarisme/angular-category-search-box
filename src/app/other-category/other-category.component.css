@@ -1,0 +1,9 @@
+.category-image{
+    border : 1px solid rgb(240, 240, 240);
+    margin : 2px;
+}
+
+.category-image-selected{
+    border : 1px solid #111;
+    margin : 2px;
+}
