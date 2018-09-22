@@ -18,45 +18,50 @@ export class HeaderComponent implements OnInit {
   keywordLength : number = 0;
   inputText = "";
   menuCollapsed = true;
-
+  showMainCategories :boolean = false;
 
   @ViewChild("inputBox") _el: ElementRef;
 
   constructor(private categoryService : CategoryService) { }
 
   ngOnInit() {
-    this.selectedCategories = this.categoryService.selectedCategories;
-    this.otherCategories = this.categoryService.otherCategories;
+    // this.selectedCategories = this.categoryService.selectedCategories;
+    // this.otherCategories = this.categoryService.otherCategories;
+    // this.mainCategories = this.categoryService.categories;
+  }
+
+  onInputFocus(){
     this.mainCategories = this.categoryService.categories;
+    this.showMainCategories=true;
+    
+  }
+  toggleOtherCategoriesMenu(){
+    this.showOtherCategories=!this.showOtherCategories;
+    this.menuCollapsed=!this.menuCollapsed;
+    if(!this.menuCollapsed){
+      this.otherCategories = this.categoryService.otherCategories;
+    }else{
+      this.otherCategories = [];
+    }
   }
 
   onSearchChange(event){
-    console.log(event);
-
-    
-    
     if(event.inputType =="deleteContentBackward"){
       this.searchKeyword = "";//this.searchKeyword.substr(0, this.searchKeyword.length-2);
       event.target.value ="";
       this.categoryService.searchCategories(this.searchKeyword);
-    this.otherCategories = this.categoryService.otherCategories;
-    this.mainCategories = this.categoryService.categories;
-    
+      this.otherCategories = this.categoryService.otherCategories;
+      this.mainCategories = this.categoryService.categories;
     }else if(event.inputType=="insertText"){
       this.searchKeyword = this.searchKeyword + event.data;//= event.value;
     
       this.categoryService.searchCategories(this.searchKeyword);
-    this.otherCategories = this.categoryService.otherCategories;
-    this.mainCategories = this.categoryService.categories;
-    
-    event.target.value = this.categoryService.predictedCategory.categoryName;
-    this.setInputSelection(event.target, this.searchKeyword.length, 100);
+      this.otherCategories = this.categoryService.otherCategories;
+      this.mainCategories = this.categoryService.categories;
+      
+      event.target.value = this.categoryService.predictedCategory.categoryName;
+      this.setInputSelection(event.target, this.searchKeyword.length, 100);
     }
-
-
-    
-    // event.target.select(this.keywordLength , 100);
-
   }
 
    setInputSelection(input, startPos, endPos) {
@@ -65,7 +70,6 @@ export class HeaderComponent implements OnInit {
         input.selectionStart = startPos;
         input.selectionEnd = endPos;
     } else if ((document as any).selection && (document as any).selection.createRange) {
-        // IE branch
         input.select();
         var range = (document as any).selection.createRange();
         range.collapse(true);
@@ -82,7 +86,6 @@ export class HeaderComponent implements OnInit {
     this.mainCategories = this.categoryService.categories;
     this.otherCategories = [];
     this.inputText = "";
-
   }
 
   onKeyDown(event : KeyboardEvent){
@@ -102,5 +105,4 @@ export class HeaderComponent implements OnInit {
       this.mainCategories[this.selectionIndex].selectionStatus = 1;
     }
   }
-
 }
