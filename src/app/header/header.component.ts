@@ -127,4 +127,8 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
+
+  focusInput(){
+  this._el.nativeElement.focus();   
+  }
 }
